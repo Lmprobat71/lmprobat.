@@ -1,7 +1,6 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-// Fonction pour vérifier les permissions d'un chemin
 async function checkPermissions(directory) {
     try {
         await fs.access(directory);
@@ -11,13 +10,12 @@ async function checkPermissions(directory) {
     }
 }
 
-// Fonction pour scanner les chemins et vérifier les autorisations
 async function scanPaths(basePath, service) {
     const directoriesToCheck = [
-        path.join(basePath),
+        basePath,
         path.join(basePath, 'images'),
-        path.join(basePath, 'images', 'galery'),
-        path.join(basePath, 'images', 'galery', service)
+        path.join(basePath, 'images', 'Galery'),
+        path.join(basePath, 'images', 'Galery', service)
     ];
 
     const results = [];
@@ -38,12 +36,11 @@ exports.handler = async function(event, context) {
 
     const basePath = path.join(__dirname, '..', '..');
     const scanResults = await scanPaths(basePath, service);
+    const directory = path.join(basePath, 'images', 'Galery', service);
 
-    const directory = path.join(basePath, 'images', 'galery', service);
-    let files = [];
     try {
         await fs.access(directory);
-        files = await fs.readdir(directory);
+        const files = await fs.readdir(directory);
         const images = files.filter(file => /\.(jpg|jpeg|png|gif)$/i.test(file));
 
         if (!images.length) {
@@ -57,7 +54,7 @@ exports.handler = async function(event, context) {
             statusCode: 200,
             body: JSON.stringify({
                 scanResults,
-                images: images.map(image => `/images/galery/${service}/${image}`)
+                images: images.map(image => `/images/Galery/${service}/${image}`)
             })
         };
     } catch (error) {
