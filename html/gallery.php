@@ -7,7 +7,16 @@ if (!isset($_GET['service'])) {
 
 $service = $_GET['service'];
 
-$directory = $_SERVER['DOCUMENT_ROOT'] . 'https://github.com/Lmprobat71/lmprobat./tree/main/images/Galery/'. $service .'/';
+// Utilisation du chemin d'accès que vous avez fourni
+$directory = $_SERVER['DOCUMENT_ROOT'] . '/images/Galery/' . $service . '/';
+
+// Vérifiez si le répertoire existe
+if (!is_dir($directory)) {
+    http_response_code(404);
+    echo json_encode(['error' => 'Répertoire non trouvé.']);
+    exit;
+}
+
 $images = glob($directory . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
 
 if (!$images) {
