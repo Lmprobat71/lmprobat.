@@ -5,9 +5,9 @@ const path = require('path');
 async function checkPermissions(directory) {
     try {
         await fs.access(directory);
-        console.log(`Accès autorisé pour : ${directory}`);
+        return { path: directory, access: 'authorized' };
     } catch (error) {
-        console.log(`Accès refusé ou répertoire non trouvé pour : ${directory}`);
+        return { path: directory, access: 'denied', error: error.message };
     }
 }
 
@@ -20,9 +20,11 @@ async function scanPaths(basePath, service) {
         path.join(basePath, 'images', 'Galery', service)
     ];
 
+    const results = [];
     for (const dir of directoriesToCheck) {
-        await checkPermissions(dir);
+        results.push(await checkPermissions(dir));
     }
+    return results;
 }
 
 exports.handler = async function(event, context) {
@@ -35,32 +37,36 @@ exports.handler = async function(event, context) {
     }
 
     const basePath = path.join(__dirname, '..', '..');
-    await scanPaths(basePath, service);
+    const scanResults = await scanPaths(basePath, service);
 
     const directory = path.join(basePath, 'images', 'Galery', service);
-
+    let files = [];
     try {
         await fs.access(directory);
-        const files = await fs.readdir(directory);
+        files = await fs.readdir(directory);
         const images = files.filter(file => /\.(jpg|jpeg|png|gif)$/i.test(file));
 
         if (!images.length) {
             return {
-            statusCode: 404,
-            body: JSON.stringify({ error: 'Aucune image trouvée pour ce service.' })
+                statusCode: 404,
+                body: JSON.stringify({ error: 'Aucune image trouvée pour ce service.' })
             };
         }
 
         return {
             statusCode: 200,
-            body: JSON.stringify(images.map(image => `/images/Galery/${service}/${image}`))
+            body: JSON.stringify({
+                scanResults,
+                images: images.map(image => `/images/Galery/${service}/${image}`)
+            })
         };
     } catch (error) {
-        console.error('Erreur:', error.message);
-
         return {
             statusCode: 404,
-            body: JSON.stringify({ error: `Répertoire non trouvé ou inaccessible: ${error.message}` })
+            body: JSON.stringify({
+                error: `Répertoire non trouvé ou inaccessible: ${error.message}`,
+                scanResults
+            })
         };
     }
 };
