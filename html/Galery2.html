@@ -349,7 +349,7 @@
     <script>
         async function loadGallery(service) {
             try {
-                const response = await fetch(`/your-api-endpoint?service=${service}`);
+                const response = await fetch(`/.netlify/functions/gallery.js?service=${service}`);
                 const data = await response.json();
     
                 if (response.ok) {
@@ -362,7 +362,8 @@
                 console.error('Erreur de réseau:', error);
             }
         }
-    </script>    
+    </script>
+      
     <footer id="footer-container"></footer>
 </body>
 </html>
