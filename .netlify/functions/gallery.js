@@ -10,7 +10,13 @@ exports.handler = async function(event, context) {
         };
     }
 
-    const directory = path.join('/', 'images', 'Galery', service);
+    // Log du service pour le débogage
+    console.log('Service:', service);
+
+    const directory = path.join(__dirname, '..', '..', 'images', 'Galery', service);
+
+    // Log du répertoire pour le débogage
+    console.log('Directory:', directory);
 
     try {
         await fs.access(directory);
@@ -29,6 +35,9 @@ exports.handler = async function(event, context) {
             body: JSON.stringify(images.map(image => `/images/Galery/${service}/${image}`))
         };
     } catch (error) {
+        // Log de l'erreur pour le débogage
+        console.error('Erreur:', error.message);
+
         return {
             statusCode: 404,
             body: JSON.stringify({ error: `Répertoire non trouvé ou inaccessible: ${error.message}` })
