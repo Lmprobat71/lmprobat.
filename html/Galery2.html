@@ -350,23 +350,31 @@
         async function loadGallery(service) {
             try {
                 const response = await fetch(`/.netlify/functions/gallery?service=${service}`);
-                const data = await response.json();
-
-                // Loguer les résultats du scan et les images
-                console.log('Scan Results:', data.scanResults);
-                console.log('Images:', data.images);
-
-                if (response.ok) {
-                    const imagesContainer = document.getElementById('images');
-                    imagesContainer.innerHTML = data.images.map(image => `<img src="${image}" alt="${service} image">`).join('');
-                } else {
-                    console.error('Erreur:', data.error);
+                const text = await response.text();
+                
+                // Affiche la réponse brute dans la console
+                console.log('Réponse brute:', text);
+    
+                try {
+                    const data = JSON.parse(text); // Tente de parser la réponse en JSON
+                    console.log('Scan Results:', data.scanResults);
+                    console.log('Images:', data.images);
+    
+                    if (response.ok) {
+                        const imagesContainer = document.getElementById('images');
+                        imagesContainer.innerHTML = data.images.map(image => `<img src="${image}" alt="${service} image">`).join('');
+                    } else {
+                        console.error('Erreur:', data.error);
+                    }
+                } catch (jsonError) {
+                    console.error('Erreur de parsing JSON:', jsonError);
                 }
             } catch (error) {
                 console.error('Erreur de réseau:', error);
             }
         }
     </script>
+    
     <footer id="footer-container"></footer>
 </body>
 
