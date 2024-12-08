@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs').promises; // Utiliser les promesses
 const path = require('path');
 
 exports.handler = async function(event, context) {
@@ -11,23 +11,30 @@ exports.handler = async function(event, context) {
     }
 
     const directory = path.join(__dirname, '..', '..', 'public', 'images', 'Galery', service);
-    if (!fs.existsSync(directory)) {
+
+    try {
+        // Vérifier si le répertoire existe
+        await fs.access(directory);
+        
+        // Lire les fichiers dans le répertoire
+        const files = await fs.readdir(directory);
+        const images = files.filter(file => /\.(jpg|jpeg|png|gif)$/.test(file));
+
+        if (!images.length) {
+            return {
+                statusCode: 404,
+                body: JSON.stringify({ error: 'Aucune image trouvée pour ce service.' })
+            };
+        }
+
+        return {
+            statusCode: 200,
+            body: JSON.stringify(images.map(image => `/images/Galery/${service}/${image}`))
+        };
+    } catch (error) {
         return {
             statusCode: 404,
             body: JSON.stringify({ error: 'Répertoire non trouvé.' })
         };
     }
-
-    const images = fs.readdirSync(directory).filter(file => /\.(jpg|jpeg|png|gif)$/.test(file));
-    if (!images.length) {
-        return {
-            statusCode: 404,
-            body: JSON.stringify({ error: 'Aucune image trouvée pour ce service.' })
-        };
-    }
-
-    return {
-        statusCode: 200,
-        body: JSON.stringify(images.map(image => `/images/Galery/${service}/${image}`))
-    };
 };
