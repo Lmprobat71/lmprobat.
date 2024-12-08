@@ -7,7 +7,7 @@ if (!isset($_GET['service'])) {
 
 $service = $_GET['service'];
 
-$directory = $_SERVER['DOCUMENT_ROOT'] . '/images/Galery/'. $service .'/';
+$directory = $_SERVER['DOCUMENT_ROOT'] . 'https://github.com/Lmprobat71/lmprobat./tree/main/images/Galery/'. $service .'/';
 $images = glob($directory . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
 
 if (!$images) {
