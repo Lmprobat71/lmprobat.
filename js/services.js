@@ -1,4 +1,18 @@
 $(document).ready(function () {
+    // Définir la fonction showDescription
+    function showDescription() {
+        // Logique pour afficher la description
+        alert("Description affichée !");
+    }
+
+    // Assurez-vous que l'élément existe avant d'ajouter l'événement
+    const elements = document.querySelectorAll('.your-element-class');
+    elements.forEach(element => {
+        if (element) {
+            element.onclick = showDescription;
+        }
+    });
+
     // Afficher l'overlay
     $(".btn-box").click(function () {
         const overlay = $(this).parent().children(".overlay");
@@ -18,7 +32,7 @@ $(document).ready(function () {
     // Filtrage des images
     $(".list").click(function () {
         const value = $(this).attr('data-filter');
-        if (value == 'all') {
+        if (value === 'all') {
             $(".project-image").show('1000');
         } else {
             $(".project-image").not('.' + value).hide('1000');
@@ -37,34 +51,41 @@ $(document).ready(function () {
         const galleryContent = $("#gallery-content");
         const gallerySection = $("#gallery-section");
 
-        galleryContent.empty(); // Effacer les images précédentes
-        galleryTitle.text(`${service}`); // Mettre à jour le titre de la galerie
+        if (galleryContent.length && galleryTitle.length && gallerySection.length) {
+            galleryContent.empty(); // Effacer les images précédentes
+            galleryTitle.text(service); // Mettre à jour le titre de la galerie
 
-        fetch(`/html/gallery.php?service=${service}`)
-            .then(response => response.json())
-            .then(images => {
-                if (images.error) {
-                    console.error(images.error);
-                    return;
-                }
+            fetch(`/html/gallery.php?service=${service}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then(images => {
+                    if (images.error) {
+                        console.error(images.error);
+                        return;
+                    }
 
-                images.forEach(image => {
-                    const imgElement = document.createElement("img");
-                    imgElement.className = "project-image";
-                    imgElement.src = image.replace('\/', '/');
-                    galleryContent.append(imgElement);
-                });
+                    images.forEach(image => {
+                        const imgElement = document.createElement("img");
+                        imgElement.className = "project-image";
+                        imgElement.src = image.replace('\/', '/');
+                        galleryContent.append(imgElement);
+                    });
 
-                if (gallerySection.length) {
                     gallerySection.show(); // Afficher la section galerie
                     $('html, body').animate({
                         scrollTop: gallerySection.offset().top
                     }, 'slow'); // Faire défiler vers la galerie
-                }
-            })
-            .catch(error => {
-                console.error('Erreur lors du chargement des images:', error);
-            });
+                })
+                .catch(error => {
+                    console.error('Erreur lors du chargement des images:', error);
+                });
+        } else {
+            console.error("Un ou plusieurs éléments de la galerie n'ont pas été trouvés.");
+        }
     };
 
     // Fonction pour cacher la galerie
@@ -75,6 +96,8 @@ $(document).ready(function () {
             $('html, body').animate({
                 scrollTop: $("#services").offset().top
             }, 'slow'); // Faire défiler vers la section des services
+        } else {
+            console.error("L'élément de section de la galerie n'a pas été trouvé.");
         }
     };
 });
