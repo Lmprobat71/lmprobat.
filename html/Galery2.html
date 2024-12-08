@@ -346,7 +346,23 @@
         <img src="/images/contactnous.png" alt="Icône téléphone" class="fixed-icon">
     </a>
     <script src="/js/homejs.js"></script>
-    <script src="/netlify/functions/gallery.js"></script>
+    <script>
+        async function loadGallery(service) {
+            try {
+                const response = await fetch(`/your-api-endpoint?service=${service}`);
+                const data = await response.json();
+    
+                if (response.ok) {
+                    const imagesContainer = document.getElementById('images');
+                    imagesContainer.innerHTML = data.map(image => `<img src="${image}" alt="${service} image">`).join('');
+                } else {
+                    console.error('Erreur:', data.error);
+                }
+            } catch (error) {
+                console.error('Erreur de réseau:', error);
+            }
+        }
+    </script>    
     <footer id="footer-container"></footer>
 </body>
 </html>
