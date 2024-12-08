@@ -10,7 +10,6 @@ async function listDirectoryContents(directory) {
             const filePath = path.join(directory, file.name);
             const isDirectory = file.isDirectory();
             results.push({ name: file.name, path: filePath, isDirectory });
-            // Si c'est un dossier, récurser pour lister son contenu
             if (isDirectory) {
                 const subDirContents = await listDirectoryContents(filePath);
                 results.push(...subDirContents);
@@ -23,11 +22,18 @@ async function listDirectoryContents(directory) {
 }
 
 exports.handler = async function(event, context) {
-    const basePath = '/';
-    const directoryContents = await listDirectoryContents(basePath);
-
-    return {
-        statusCode: 200,
-        body: JSON.stringify({ directoryContents })
-    };
+    const serviceName = event.queryStringParameters.serviceName || 'default_service';
+    const basePath = path.join(__dirname, `../images/Galery/${serviceName}`); // Ajustez ce chemin selon vos besoins
+    try {
+        const directoryContents = await listDirectoryContents(basePath);
+        return {
+            statusCode: 200,
+            body: JSON.stringify({ directoryContents })
+        };
+    } catch (error) {
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: error.message })
+        };
+    }
 };
