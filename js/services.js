@@ -1,12 +1,18 @@
 $(document).ready(function () {
     // Afficher l'overlay
     $(".btn-box").click(function () {
-        $(this).parent().children(".overlay").show();
+        const overlay = $(this).parent().children(".overlay");
+        if (overlay.length) {
+            overlay.show();
+        }
     });
 
     // Cacher l'overlay
     $(".close").click(function () {
-        $(this).closest(".overlay").hide();
+        const overlay = $(this).closest(".overlay");
+        if (overlay.length) {
+            overlay.hide();
+        }
     });
 
     // Filtrage des images
@@ -49,21 +55,26 @@ $(document).ready(function () {
                     galleryContent.append(imgElement);
                 });
 
-                gallerySection.show(); // Afficher la section galerie
-                $('html, body').animate({
-                    scrollTop: gallerySection.offset().top
-                }, 'slow'); // Faire défiler vers la galerie
+                if (gallerySection.length) {
+                    gallerySection.show(); // Afficher la section galerie
+                    $('html, body').animate({
+                        scrollTop: gallerySection.offset().top
+                    }, 'slow'); // Faire défiler vers la galerie
+                }
             })
             .catch(error => {
                 console.error('Erreur lors du chargement des images:', error);
             });
-    }
+    };
 
     // Fonction pour cacher la galerie
     window.hideGallery = function () {
-        $("#gallery-section").hide();
-        $('html, body').animate({
-            scrollTop: $("#services").offset().top
-        }, 'slow'); // Faire défiler vers la section des services
-    }
+        const gallerySection = $("#gallery-section");
+        if (gallerySection.length) {
+            gallerySection.hide();
+            $('html, body').animate({
+                scrollTop: $("#services").offset().top
+            }, 'slow'); // Faire défiler vers la section des services
+        }
+    };
 });
