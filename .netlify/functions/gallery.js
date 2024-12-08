@@ -34,7 +34,8 @@ exports.handler = async function(event, context) {
         };
     }
 
-    const basePath = path.join(__dirname, '..', '..');
+    // Point de départ à la racine du serveur
+    const basePath = '/';
     const scanResults = await scanPaths(basePath, service);
     const directory = path.join(basePath, 'images', 'Galery', service);
 

@@ -351,15 +351,15 @@
             try {
                 const response = await fetch(`/.netlify/functions/gallery?service=${service}`);
                 const text = await response.text();
-
+                
                 // Affiche la réponse brute dans la console
                 console.log('Réponse brute:', text);
-
+    
                 try {
                     const data = JSON.parse(text); // Tente de parser la réponse en JSON
                     console.log('Scan Results:', data.scanResults);
                     console.log('Images:', data.images);
-
+    
                     if (response.ok) {
                         const imagesContainer = document.getElementById('gallery-content');
                         imagesContainer.innerHTML = data.images.map(image => `<img src="${image}" alt="${service} image">`).join('');
@@ -373,17 +373,18 @@
                 console.error('Erreur de réseau:', error);
             }
         }
-
+    
         function hideGallery() {
             document.getElementById('gallery-section').style.display = 'none';
         }
-
+    
         function showDescription(element) {
             const service = element.getAttribute('data-service');
             document.getElementById('gallery-title').innerText = `Galerie de ${service}`;
             document.getElementById('gallery-section').style.display = 'block';
         }
     </script>
+    
     <footer id="footer-container"></footer>
 </body>
 
