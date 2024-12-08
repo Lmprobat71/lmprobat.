@@ -347,29 +347,40 @@
     </a>
     <script src="/js/homejs.js"></script>
     <script>
-        async function loadDirectoryContents() {
+    async function loadDirectoryContents(serviceName) {
+        try {
+            const response = await fetch(`/.netlify/functions/gallery?serviceName=${serviceName}`);
+            const text = await response.text();
+
+            console.log('Réponse brute:', text);
+
             try {
-                const response = await fetch(`/.netlify/functions/gallery`);
-                const text = await response.text();
-                
-                // Affiche la réponse brute dans la console
-                console.log('Réponse brute:', text);
-    
-                try {
-                    const data = JSON.parse(text); // Tente de parser la réponse en JSON
-                    console.log('Directory Contents:', data.directoryContents);
-                } catch (jsonError) {
-                    console.error('Erreur de parsing JSON:', jsonError);
-                }
-            } catch (error) {
-                console.error('Erreur de réseau:', error);
+                const data = JSON.parse(text);
+                console.log('Directory Contents:', data.directoryContents);
+
+                // Affichez les images dans votre page
+                const imageContainer = document.getElementById('image-container');
+                imageContainer.innerHTML = ''; // Réinitialise le conteneur
+                data.directoryContents.forEach(item => {
+                    if (!item.isDirectory && item.name.endsWith('.jpg')) {
+                        const img = document.createElement('img');
+                        img.src = item.path;
+                        img.alt = item.name;
+                        imageContainer.appendChild(img);
+                    }
+                });
+
+            } catch (jsonError) {
+                console.error('Erreur de parsing JSON:', jsonError);
             }
+        } catch (error) {
+            console.error('Erreur de réseau:', error);
         }
-    
-        // Appel initial pour charger les contenus du répertoire à la racine
-        loadDirectoryContents();
-    </script>
-    
+    }
+
+    // Remplacez 'service1' par la méthode pour obtenir le service sélectionné
+    loadDirectoryContents('service1');
+</script>
     
     <footer id="footer-container"></footer>
 </body>
