@@ -1,0 +1,266 @@
+/* Variables pour les couleurs */
+:root {
+    --main-color: #2992f7; /* Couleur principale */
+    --accent-color: #0288d1; /* Couleur d'accentuation */
+    --second-color: #0288d1;
+    --text-color: #333; /* Couleur du texte */
+    --bg-color: #e0f7fa; /* Couleur de fond */
+    --white: #fff; /* Blanc */
+    --light-grey: #f9f9f9; /* Gris clair */
+    
+    /* Couleurs du menu */
+    --menu-bg: #2992f7; /* Couleur de fond du menu */
+    --header-bg-color: #2992f7; /* Couleur de fond du header */
+    --header-text-color: #fff; /* Couleur du texte du header */
+    
+    /* Couleurs de la navigation */
+    --nav-container-bg-color: #333; /* Couleur de fond du conteneur de navigation */
+    --nav-color1: #2992f7; /* Couleur gauche du menu de navigation */
+    --nav-color2: #e53935; /* Couleur milieu du menu de navigation */
+    --nav-color3: #fdd835; /* Couleur droite du menu de navigation */
+    --nav-text-color: #fff; /* Couleur du texte des liens de navigation */
+    --nav-hover-color: #ff6ae7a4; /* Couleur de survol des liens de navigation */
+    --nav-active-color: #e53935; /* Couleur active des liens de navigation */
+    
+    /* Couleurs du footer */
+    --footer-color1: #2992f7; /* Couleur gauche du footer */
+    --footer-color2: #e53935; /* Couleur milieu du footer */
+    --footer-color3: #fdd835; /* Couleur droite du footer */
+    --footer-text-color: #fff; /* Couleur du texte du footer */
+    --footer-link-color: #fff; /* Couleur des liens du footer */
+    
+    /* Couleurs et tailles générales */
+    --icon-bg-color: #fff; /* Couleur de fond de l'icône fixe */
+    --body-bg-color: #eaffff; /* Couleur de fond du corps de la page */
+    --body-text-color: #333; /* Couleur du texte du corps de la page */
+    --gallery-container-bg: #fff; /* Couleur de fond du conteneur de la galerie */
+    --gallery-container-border1: #2992f7; /* Couleur bordure 1 du conteneur de la galerie */
+    --gallery-container-border2: #e53935; /* Couleur bordure 2 du conteneur de la galerie */
+    --gallery-container-border3: #fdd835; /* Couleur bordure 3 du conteneur de la galerie */
+    --highlight-color: #fdd835; /* Jaune lumineux - Utilisé pour les éléments de mise en évidence */
+    --size: 100px; /* Taille des images dans la galerie */
+}
+
+/* Styles pour le corps de la page */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-between;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Styles de l'en-tête */
+header.custom-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30vh 0;
+    text-align: center;
+    background-image: url('/images/heater.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--header-text-color);
+    z-index: 1;
+    width: 100%;
+}
+
+/* Navigation */
+nav {
+    display: flex; /* Use Flexbox for horizontal alignment of items */
+    justify-content: space-around; /* Distribute items evenly with space between them */
+    align-items: center; /* Center items vertically */
+    width: 100%; /* Take the full width of the page */
+    background: linear-gradient(to right, var(--nav-color1), var(--nav-color2), var(--nav-color3)); /* Gradient background */
+    padding: 2px 0; /* Padding for top and bottom */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    position: relative; /* Ensure it flows in the document without being fixed */
+    margin-top: 0px; /* Space between the header and the navigation */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+/* List of navigation items */
+nav ul {
+    list-style: none; /* Remove default list styling */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Align items horizontally */
+    width: 100%; /* Take full width */
+    justify-content: space-around; /* Distribute items evenly */
+}
+
+/* Individual list items */
+nav ul li {
+    position: relative; /* Necessary for any future sub-menu positioning */
+}
+
+/* Links in the list items */
+nav ul li a {
+    color: var(--nav-text-color); /* Text color for links */
+    text-decoration: none; /* Remove underline from links */
+    font-weight: bold; /* Make text bold */
+    font-size: 1.2em; /* Font size */
+    padding: 10px 15px; /* Internal padding for links */
+    border-radius: 5px; /* Rounded corners for links */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Hover and active state for links */
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: var(--nav-hover-color); /* Background color on hover/active */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    transform: scale(1.1); /* Slightly enlarge the link */
+}
+
+/* Media Queries for mobile devices */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: center; /* Center items horizontally */
+    }
+    nav ul li a {
+        font-size: 1em; /* Smaller font size for mobile */
+        padding: 10px 20px; /* Adjust padding for mobile */
+        width: 90%; /* Make links take almost full width */
+        text-align: center; /* Center text */
+    }
+}
+
+/* Burger menu (mobile) */
+nav .burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    position: relative;
+    z-index: 1001;
+}
+
+nav .burger div {
+    width: 30px;
+    height: 3px;
+    background-color: var(--nav-text-color);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+nav .burger.active div {
+    opacity: 0;
+}
+
+/* Popup radial */
+@media (max-width: 768px) {
+    nav .burger {
+        display: flex;
+    }
+    nav ul {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(to right, var(--nav-color1), var(--nav-color2), var(--nav-color3));
+        padding: 20px;
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 99999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    nav ul.active {
+        display: flex;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+    }
+    nav ul li {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    nav ul li a {
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Styles pour l'icône fixe en bas à droite */
+.fixed-icon {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 10vw;
+    max-width: 110px;
+    height: auto;
+    z-index: 10000;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out; /* Transition fluide pour l'animation */
+  }
+  
+  /* Appliquer l'animation au survol de l'icône */
+  .fixed-icon:hover {
+    transform: translateY(-35px) scale(1.3); /* Effet de déplacement et d'agrandissement */
+  }
+  
+
+/* Footer */
+footer {
+    text-align: center;
+    background: linear-gradient(to right, var(--footer-color1), var(--footer-color2), var(--footer-color3));
+    color: var(--footer-text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+    height: 5px; /* Fixe la hauteur du footer */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    animation: fadeInUp 1s ease-out; /* Animation pour l'apparition du footer */
+}
+
+/* Styles Responsifs */
+@media (max-width: 768px) {
+    header.custom-header {
+        padding: 130px 0; /* Ajuste le padding pour les petits écrans */
+    }
+    .fixed-icon {
+        width: 12vw; /* Largeur relative de l'icône */
+        max-width: 100px; /* Limite la largeur maximale de l'icône */
+    }
+}
+
+/* Styles pour les très petits écrans (smartphones) */
+@media (max-width: 480px) {
+    .fixed-icon {
+        width: 20vw; /* Augmente encore la largeur relative pour les petits écrans */
+        max-width: 100px; /* Limite la largeur maximale de l'icône */
+    }
+}
+
+/* Animation pour le footer */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

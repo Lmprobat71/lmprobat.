@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMProbat - Entreprise de Bâtiment</title>
+    <meta name="description" content="LMProbat est une entreprise de bâtiment située à Gueugnon, spécialisée dans la plâtrerie, peinture, carrelage, faïence, maçonnerie, façade et enduit intérieur et extérieur.">
+    <meta name="keywords" content="LMProbat, bâtiment, plâtrerie, peinture, carrelage, faïence, maçonnerie, façade, enduit intérieur, enduit extérieur, Gueugnon">
+    <meta name="author" content="LMProbat">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa;
+            color: #333;
+        }
+        header, nav, footer {
+            background-color: #4fc3f7;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            padding: 40px 20px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        h2 {
+            color: #4fc3f7;
+            border-bottom: 2px solid #4fc3f7;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+        .photos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .photos img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            object-fit: cover;
+            border: 2px solid #4fc3f7;
+            border-radius: 5px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #4fc3f7;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn:hover {
+            background-color: #0288d1;
+        }
+        @media (max-width: 768px) {
+            .photos img {
+                width: 45%;
+            }
+        }
+        @media (max-width: 480px) {
+            .photos img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LMProbat</h1>
+        <p>Votre partenaire de confiance pour des services de bâtiment de qualité supérieure</p>
+    </header>
+    <nav>
+        <a href="#about">À propos</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Galerie</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="container">
+        <section id="about">
+            <h2>À propos de nous</h2>
+            <p>LMProbat est une entreprise de bâtiment renommée, basée à Gueugnon et présente dans de nombreuses grandes villes telles que Dijon, Lyon, Limoges et Clermont-Ferrand. Nos domaines d'expertise incluent la plâtrerie, la peinture, le carrelage, la faïence, la maçonnerie, les façades et les enduits intérieurs et extérieurs. Nous nous engageons à fournir un travail de qualité supérieure, en respectant les délais et en assurant la satisfaction totale de nos clients. Faites confiance à LMProbat pour tous vos projets de construction et de rénovation.</p>
+        </section>
+        <section id="services">
+            <h2>Nos Services</h2>
+            <ul>
+                <li>Plâtrerie</li>
+                <li>Peinture</li>
+                <li>Carrelage</li>
+                <li>Faïence</li>
+                <li>Maçonnerie</li>
+                <li>Façade</li>
+                <li>Enduit Intérieur & Extérieur</li>
+            </ul>
+        </section>
+        <section id="gallery">
+            <h2>Galerie</h2>
+            <div class="photos">
+                <img src="photo1.jpg" alt="Travail 1">
+                <img src="photo2.jpg" alt="Travail 2">
+                <img src="photo3.jpg" alt="Travail 3">
+            </div>
+        </section>
+        <section id="contact">
+            <h2>Contactez-nous</h2>
+            <p>Email: <a href="mailto:Improbat71@gmail.com">Improbat71@gmail.com</a></p>
+            <p>Téléphone: 06.38.77.67.46</p>
+            <p>Adresse: 1 Rue Waldeck Rochet, 71130 Gueugnon, France</p>
+            <a class="btn" href="mailto:Improbat71@gmail.com">Envoyer un Email</a>
+            <p>
+                <a href="https://www.facebook.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+            </p>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 LMProbat - Tous droits réservés</p>
+    </footer>
+</body>
+</html>

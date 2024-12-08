@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LM Probat - Entreprise du Bâtiment</title>
+    <meta name="description"
+        content="LM Probat est une entreprise de bâtiment située à Gueugnon, spécialisée dans la plâtrerie, peinture, carrelage, faïence, maçonnerie, façade et enduit intérieur et extérieur.">
+    <meta name="keywords"
+        content="LMProbat, bâtiment, plâtrerie, peinture, carrelage, faïence, maçonnerie, façade, enduit intérieur, enduit extérieur, Gueugnon">
+    <meta name="author" content="LM Probat">
+    <link rel="stylesheet" href="/css/basecss.css">
+    <link rel="stylesheet" href="/css/services.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery-bundle.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/lightgallery.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/autoplay/lg-autoplay.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/fullscreen/lg-fullscreen.umd.min.js"></script>
+    <link rel="icon" href="/path/to/favicon.ico" type="image/x-icon">
+    <style>
+        /* button */
+        button {
+            margin: 2px;
+            padding: 10px 10px;
+            border: none;
+            outline: none;
+            color: rgba(255, 255, 255, 0);
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 12px;
+            float: center;
+            margin: 15px;
+        }
+
+        button::after {
+            content: "";
+            z-index: -1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(51, 51, 51, 0);
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+        
+        /* glow */
+        button::before {
+            content: "";
+            background: linear-gradient(45deg,
+                    #FF0000, #FF7300, #FFFB00, #48FF00,
+                    #00FFD5, #FF00C8, #FF0000);
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background-size: 600%;
+            z-index: -1;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            filter: blur(4px);
+            animation: glowing 20s linear infinite;
+            /* transition: opacity .0s ease-in-out; */
+            border-radius: 40px;
+            opacity: 0;
+        }
+
+        @keyframes glowing {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 600% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        /* hover */
+        button:hover::before {
+            opacity: 1;
+        }
+
+        button:active:after {
+            background: transparent;
+        }
+
+        button:active {
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* Styles pour la section secphoto */
+        #secphoto {
+            padding: 30px;
+            background: aliceblue;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            /* Couleur du texte */
+            text-align: center;
+            transition: 0.5s ease;
+        }
+
+        #secphoto h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); Effet de texte */
+        }
+
+        /* Styles du bouton de fermeture de la galerie */
+        #secphoto .close-gallery {
+            margin: 20px auto;
+            padding: 15px 40px;
+            border: none;
+            outline: none;
+            color: #FFF;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            /* Gradient de fond */
+            cursor: pointer;
+            position: relative;
+            margin: 40px 20px;
+            z-index: 0;
+            border-radius: 12px;
+            display: inline-block;
+            transition: 0.3s ease-in-out, transform 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #secphoto .close-gallery:hover {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            /* Inverse le gradient */
+            transform: scale(1.05);
+            /* Effet de zoom */
+        }
+
+        #secphoto .close-gallery:active {
+            background: linear-gradient(to right, #3a7bd5, #3a6073);
+            /* Couleur différente */
+            font-weight: bold;
+        }
+
+        /* Styles pour le contenu de la galerie */
+        #secphoto .container {
+            width: 100%;
+            padding: 2px;
+            border-radius: 100px;
+            box-shadow: 0 0 20px rgb(0 0 0 / 72%);
+            display: inline-block;
+        }
+
+        #secphoto #gallery-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding-top: 20px;
+        }
+
+        #secphoto .project-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Effet 3D pour les images */
+        #secphoto .project-image:hover {
+            transform: rotateY(15deg) rotateX(15deg) scale(1.1);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, #FF0000, #FF7300, #FFFB00, #48FF00, #00FFD5, #002BFF, #FF00C8, #FF0000);
+
+        }
+
+        /* Responsivité */
+        @media (max-width: 768px) {
+            #secphoto #gallery-content {
+                flex-direction: column;
+            }
+
+            #secphoto .project-image {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="custom-header"></header>
+    <nav id="menu-container"></nav> <!-- Menu de navigation -->
+    <main>
+        <!-- Section des services avec un design en bulles -->
+        <div class="container">
+            <section id="services">
+                <h2><u>Nos Services</u></h2>
+                <div class="services-bubble-grid">
+                    <div class="service-bubble" data-service="Platerie" onclick="showDescription(this)">
+                        <img src="/images/services/platerie.jpg" alt="Plâtrerie">
+                        <h3>Plâtrerie</h3>
+                        <div class="service-content">
+                            <p>
+                                Nous réalisons des travaux de plâtrerie tels que l'installation de cloisons, la pose de
+                                faux
+                                plafonds, et la finition des surfaces avec des plâtres lisses et durables.<br>
+                                <button><a href="javascript:void(0);" onclick="loadGallery('Platerie')">Voir
+                                        la galerie</a></button>
+                            </p>
+                        </div>
+                    </div>
+                
+                <div class="service-bubble" data-service="Peinture" onclick="showDescription(this)">
+                    <img src="/images/services/peinture.jpg" alt="Peinture">
+                    <h3>Peinture</h3>
+                    <div class="service-content">
+                        <p>
+                            Notre équipe est spécialisée dans la peinture intérieure et extérieure, utilisant des
+                            produits de haute qualité pour des finitions impeccables et durables.<br>
+                            <button><a href="javascript:void(0);" onclick="loadGallery('Peinture')">Voir
+                                    la galerie</a></button>
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="service-bubble" data-service="Carrelage" onclick="showDescription(this)">
+                    <img src="/images/services/carrelage.jpg" alt="Carrelage">
+                    <h3>Carrelage</h3>
+                    <div class="service-content">
+                        <p>
+                            Nous offrons des services de pose de carrelage pour sols et murs, en utilisant des
+                            techniques précises pour des résultats esthétiques et résistants.<br>
+                            <button><a href="javascript:void(0);" onclick="loadGallery('Carrelage')">Voir
+                                    la galerie</a></button>
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="service-bubble" data-service="Exterieur" onclick="showDescription(this)">
+                    <img src="/images/services/exterieur.jpg" alt="Exterieur">
+                    <h3>Exterieur</h3>
+                    <div class="service-content">
+                        <p>
+                            Nous effectuons la mise en œuvre d’enrobé à chaud pour les entrées de garage, parkings,
+                            chemins, ainsi que la pose de pavés et de murs de soutènement.<br>
+                            <button><a href="javascript:void(0);" onclick="loadGallery('Exterieur')">Voir
+                                    la galerie</a></button>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="service-bubble" data-service="Ouvertures" onclick="showDescription(this)">
+                    <img src="/images/services/ouvertures.jpg" alt="Ouvertures">
+                    <h3>Ouvertures</h3>
+                    <div class="service-content">
+                        <p>
+                            ....<br>
+                            <button><a href="javascript:void(0);" onclick="loadGallery('Ouvertures')">Voir
+                                    la galerie</a></button>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="service-bubble" data-service="Maconnerie" onclick="showDescription(this)">
+                    <img src="/images/services/maconnerie.jpg" alt="Maçonnerie">
+                    <h3>Maçonnerie</h3>
+                    <div class="service-content">
+                        <p>
+                            Nous réalisons des travaux de maçonnerie générale, incluant fondations, murs,
+                            ouvertures, rénovations, dallages, extensions, et démolitions.<br>
+                            <button><a href="javascript:void(0);" onclick="loadGallery('Maconnerie')">Voir
+                                    la galerie</a></button>
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="service-bubble" data-service="Facade" onclick="showDescription(this)">
+                    <img src="/images/services/facade.jpeg" alt="Façade">
+                    <h3>Façade</h3>
+                    <div class="service-content">
+                        <p>
+                            Nous rénovons et entretenons les façades en utilisant des techniques modernes et des
+                            matériaux de qualité pour assurer longévité et esthétique.<br>
+                            <button><a href="javascript:void(0);" onclick="loadGallery('Facade')">Voir
+                                    la galerie</a></button>
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="service-bubble" data-service="Petite Menuiserie" onclick="showDescription(this)">
+                    <img src="/images/services/petitmenuiserie.jpg" alt="Petite Menuiserie">
+                    <h3>Petite menuiserie</h3>
+                    <div class="service-content">
+                        <p>
+                            Nous réalisons divers travaux de petite menuiserie, allant de la réparation de portes et
+                            fenêtres à la création de meubles sur mesure. Notre savoir-faire garantit des finitions
+                            soignées et robustes.<br>
+                            <button><a href="javascript:void(0);" onclick="loadGallery('PetitMenuiserie')">Voir
+                                    la galerie</a></button>
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="service-bubble" data-service="Parquet" onclick="showDescription(this)">
+                    <img src="/images/services/parquet.jpg" alt="Parquet">
+                    <h3>Parquet</h3>
+                    <div class="service-content">
+                        <p>
+                            Nous sommes experts dans l'installation, la rénovation et l'entretien de parquets de
+                            tous types. Que vous préfériez le bois massif, contrecollé ou stratifié, nous assurons
+                            une pose précise et un résultat esthétique durable.<br>
+                            <button><a href="javascript:void(0);" onclick="loadGallery('Parquet')">Voir
+                                    la galerie</a></button>
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <section id="secphoto">
+            <h2 id="gallery-title">Choisissez une catégorie de la galerie pour afficher les photos</h2>
+            <!-- Section dédiée aux galeries -->
+            <div id="gallery-section" style="display: none;">
+                <div class="container">
+                    <!-- <h2 id="gallery-title">Galerie de la catégorie</h2> -->
+                    <button class="close-gallery" onclick="hideGallery()">Fermer la galerie</button>
+                    <div id="gallery-content" class="portfolio"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- Icône fixe en bas à droite -->
+    <a href="/html/contact.html">
+        <img src="/images/contactnous.png" alt="Icône téléphone" class="fixed-icon">
+    </a>
+    <script src="/js/homejs.js"></script>
+    <script src="/js/services.js"></script>
+    <footer id="footer-container"></footer>
+</body>
+
+</html>

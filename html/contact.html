@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LM Probat - Entreprise du Bâtiment</title>
+    <meta name="description" content="LM Probat est une entreprise de bâtiment située à Gueugnon, spécialisée dans la plâtrerie, peinture, carrelage, faïence, maçonnerie, façade et enduit intérieur et extérieur.">
+    <meta name="keywords" content="LMProbat, bâtiment, plâtrerie, peinture, carrelage, faïence, maçonnerie, façade, enduit intérieur, enduit extérieur, Gueugnon">
+    <meta name="author" content="LM Probat">
+    <link rel="stylesheet" href="/css/homestyle3.css">
+    <link rel="icon" href="/path/to/favicon.ico" type="image/x-icon">
+    <style>
+        .content-container {
+            position: fixed;
+            left: 35%;
+        }
+
+    /* Styles pour l'icône fixe en bas à droite */
+    .fixed-icon {
+        position: fixed; /* Positionne l'icône de manière fixe par rapport à la fenêtre */
+        bottom: 10px; /* Espace entre l'icône et le bord inférieur de la fenêtre */
+        right: 10px; /* Espace entre l'icône et le bord droit de la fenêtre */
+        width: 10vw; /* Largeur relative à la largeur de la fenêtre */
+        max-width: 110px; /* Limite la largeur maximale de l'icône */
+        height: auto; /* Conserve les proportions de l'image */
+        z-index: 10000; /* Place l'icône au-dessus des autres éléments */
+        cursor: pointer; /* Change le curseur pour indiquer que l'élément est cliquable */
+    }
+
+    /* Styles pour le conteneur du GIF en plein écran */
+    #gif-overlay {
+        position: fixed; /* Positionne le GIF par rapport à la fenêtre */
+        top: 0; /* Place le conteneur au bord supérieur */
+        left: 0; /* Place le conteneur au bord gauche */
+        width: 100vw; /* Prend toute la largeur de la fenêtre */
+        height: 100vh; /* Prend toute la hauteur de la fenêtre */
+        background-color: rgba(255, 255, 255, 0); /* Fond totalement transparent pour afficher uniquement le GIF */
+        display: flex; /* Utilise Flexbox pour centrer le contenu */
+        justify-content: center; /* Centre horizontalement le GIF */
+        align-items: center; /* Centre verticalement le GIF */
+        z-index: 9999; /* Place le GIF juste en dessous de l'icône fixe */
+        transition: all 1s ease; /* Ajoute une transition fluide pour toutes les modifications de style */
+    }
+
+    /* Styles pour l'image (GIF) à l'intérieur du conteneur */
+    #gif-overlay img {
+        width: auto; /* Conserve la largeur d'origine du GIF */
+        height: auto; /* Conserve la hauteur d'origine du GIF */
+        max-width: 100%; /* Limite la largeur du GIF à la taille de la fenêtre */
+        max-height: 100%; /* Limite la hauteur du GIF à la taille de la fenêtre */
+    }
+
+    /* Animation pour la rotation et la réduction de taille */
+    @keyframes rotateAndShrink {
+        0% {
+            transform: translate(0, 0) scale(1) rotate(0deg); /* Départ : position normale sans rotation ni réduction */
+        }
+        100% {
+            transform: translate(calc(100vw - 100px), calc(100vh - 100px)) scale(0.1) rotate(360deg); /* Arrivée : déplace vers le coin inférieur droit, réduit la taille et effectue une rotation complète */
+        }
+    }
+
+    /* Styles appliqués pour déplacer, tourner et réduire le PNG vers le coin inférieur droit */
+    .animate-bottom-right {
+        animation: rotateAndShrink 3s ease forwards; /* Lance l'animation sur 2 secondes avec un easing pour une transition fluide */
+    }
+
+    /* Media queries pour le responsive design */
+    @media (max-width: 768px) {
+        /* Ajustements pour les tablettes et petits écrans */
+        #gif-overlay img {
+            max-width: 70%; /* Réduit la taille maximale du GIF à 70% de la fenêtre */
+            max-height: 70%; /* Réduit la hauteur maximale du GIF à 70% de la fenêtre */
+        }
+
+        .fixed-icon {
+            width: 12vw; /* Augmente légèrement la largeur relative de l'icône */
+            max-width: 100px; /* Maintient la limite maximale de la largeur */
+        }
+    }
+
+    /* Styles pour les très petits écrans (smartphones) */
+    @media (max-width: 480px) {
+        #gif-overlay img {
+            max-width: 90%; /* Augmente la taille maximale du GIF pour l'adapter à de petits écrans */
+            max-height: 60%; /* Réduit légèrement la hauteur maximale pour éviter les débordements */
+        }
+
+        .fixed-icon {
+            width: 20vw; /* Augmente encore la largeur relative pour compenser les petits écrans */
+            max-width: 100px; /* Maintient la limite maximale de la largeur */
+        }
+
+        /* Ajustements pour l'animation sur les petits écrans */
+        .animate-bottom-right {
+            animation: rotateAndShrink 1.5s ease forwards; /* Accélère l'animation pour s'adapter aux smartphones */
+        }
+}
+
+</style>
+</head>
+<body>
+<header class="custom-header">
+    <!-- Contenu du header -->
+</header>
+<main>
+    <!-- Conteneur pour le menu -->
+    <nav id="menu-container"></nav> <!-- Utiliser <nav> pour le menu -->
+
+    <!-- Section de contact -->
+    <section id="contact">
+    <div class="content-container">
+    
+        <h2>Contactez-nous :</h2>
+        <p>Vous pouvez nous contacter en utilisant le formulaire ci-dessous :</p>
+
+        <form id="contactForm">
+            <label for="subject">Sujet :</label> <br>  
+            <input type="text" id="subject" name="subject" required><br>
+
+            <label for="email">E-mail :</label><br>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="message">Message :</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br>
+
+            <input type="submit" value="Envoyer" class="send-button">
+        </form> <br>
+
+        J'accepte que les données saisies dans ce formulaire soient utilisées pour me contacter dans le cadre de ma demande.
+        <br>
+        <br>
+         Informations sur le traitement de vos données personnelles : Pour connaître et exercer vos droits, notamment de retrait de votre consentement à l'utilisation de données collectées par ce formulaire, veuillez consulter notre politique de confidentialité.
+        
+        
+    </section>
+<br>
+<section>
+    <div class="info_contact">
+        <p>Nos horaires d'ouverture</p>
+        <p>Nous sommes ouvert de :</p>
+        <table>
+            <tr><td>Lundi</td><td>9H à 12H</td><td>14H à 17H</td></tr>
+            <tr><td>Mardi</td><td>9H à 12H</td><td>14H à 17H</td></tr>
+            <tr><td>Mercredi</td><td>9H à 12H</td><td>14H à 17H</td></tr>
+            <tr><td>Jeudi</td><td>9H à 12H</td><td>14H à 17H</td></tr>
+            <tr><td>Vendredi</td><td>9H à 12H</td><td>14H à 17H</td></tr>
+        </table>
+    </div>
+</section>
+<br>
+<br>    
+<br>
+<br>
+<br>    
+
+
+<!-- Icône fixe en bas à droite -->
+    <a href="/html/contact.html">
+        <img src="/images/icontel.png" alt="Icône téléphone" class="fixed-icon">
+    </a>
+
+    <!-- Conteneur pour le footer -->
+    <footer id="footer-container"></footer> <!-- Utiliser <footer> pour le footer -->
+
+    <script src="/js/homejs.js"></script>
+    <script>
+        document.querySelector("#contactForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // Empêche l'envoi par défaut du formulaire
+            var subject = document.getElementById("subject").value;
+            var email = document.getElementById("email").value;
+            var message = "\n\n" + document.getElementById("message").value; // Ajoute "Bonjour," au message
+
+            var mailtoLink = "mailto:lmprobat71@gmail.com" +
+                             "?subject=" + encodeURIComponent(subject) +
+                             "&body=" + encodeURIComponent("E-mail : " + email + "\n\n" + "Bonjour, " + message);
+
+            window.location.href = mailtoLink;
+        });
+    </script>
+</body>
+</html>

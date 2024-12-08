@@ -1,0 +1,137 @@
+/* Styles spécifiques pour les écrans de largeur maximale de 768px */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Passe les éléments en colonne pour mobile */
+        align-items: center; /* Centre les éléments horizontalement */
+    }
+    nav ul li a {
+        font-size: 1em; /* Taille du texte légèrement réduite pour mobile */
+        padding: 10px 20px; /* Ajuste l'espacement interne pour mobile */
+        width: 90%; /* Les liens prennent presque toute la largeur */
+        text-align: center; /* Centre le texte */
+    }
+    nav .burger {
+        display: flex; /* Affiche le menu burger uniquement sur mobile */
+    }
+    nav ul {
+        display: none; /* Masque les éléments de menu par défaut */
+        position: fixed; /* Positionne le menu de manière fixe */
+        top: 50%; /* Centre le menu verticalement */
+        left: 50%; /* Centre le menu horizontalement */
+        transform: translate(-50%, -50%); /* Permet de centrer le menu exactement au milieu */
+        background: linear-gradient(to right, var(--nav-color1), var(--nav-color2), var(--nav-color3)); /* Arrière-plan dégradé */
+        padding: 20px; /* Espacement interne */
+        border-radius: 50%; /* Forme de cercle */
+        width: 200px; /* Largeur du menu */
+        height: 200px; /* Hauteur du menu */
+        justify-content: center; /* Centre les éléments horizontalement */
+        align-items: center; /* Centre les éléments verticalement */
+        flex-direction: column; /* Aligne les éléments en colonne */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre ajoutée pour l'effet de profondeur */
+        z-index: 99999; /* Assure que le menu est au-dessus des autres éléments */
+        opacity: 0; /* Menu initialement invisible */
+        transition: opacity 0.3s ease; /* Transition fluide pour l'opacité */
+    }
+    nav ul.active {
+        display: flex; /* Affiche les éléments de menu lorsqu'ils sont actifs */
+        opacity: 1; /* Rend les éléments de menu visibles */
+        transition: opacity 0.3s ease; /* Transition fluide pour l'opacité */
+    }
+    nav ul li {
+        display: flex; /* Aligne les éléments de menu horizontalement */
+        justify-content: center; /* Centre les éléments de menu */
+        width: 100%; /* Prend toute la largeur */
+    }
+    nav ul li a {
+        padding: 10px 0; /* Espacement interne des liens */
+        width: 100%; /* Les liens prennent toute la largeur */
+        text-align: center; /* Centre le texte des liens */
+    }
+
+    /* Styles pour le footer */
+    footer {
+        padding: 15px 0; /* Augmente le padding pour les petits écrans */
+        text-align: center; /* Centre le texte sur petits écrans */
+        height: auto; /* Ajuste la hauteur pour s'adapter au contenu */
+    }
+    footer a {
+        display: block; /* Affiche les liens en bloc pour mobile */
+        margin: 5px 0; /* Marge autour des liens pour mobile */
+    }
+    footer img {
+        margin-left: 0; /* Supprime la marge à gauche pour les images sur mobile */
+        max-width: 100%; /* Assure que les images ne débordent pas */
+        height: auto; /* Garde l'aspect ratio des images */
+    }
+
+    /* Styles pour la section About */
+    #about {
+        padding: 20px; /* Ajoute de l'espace autour de la section */
+    }
+    .about-container {
+        flex-direction: column; /* Aligne le contenu en colonne pour mobile */
+    }
+    .about-image img {
+        width: 100%; /* Les images prennent toute la largeur */
+        height: auto; /* Garde l'aspect ratio des images */
+    }
+    .about-text {
+        padding: 10px; /* Ajoute un padding pour le texte */
+    }
+
+    /* Styles pour la section de la carte */
+    #maps {
+        padding: 20px; /* Ajoute de l'espace autour de la section */
+    }
+    .info-contact {
+        display: flex;
+        flex-direction: column; /* Aligne le contenu en colonne */
+        align-items: center; /* Centre le contenu */
+    }
+    .details {
+        text-align: center; /* Centre le texte */
+    }
+    .horaires-table {
+        width: 100%; /* La table prend toute la largeur */
+        border-collapse: collapse; /* Supprime l'espace entre les cellules */
+    }
+    .horaires-table th, .horaires-table td {
+        text-align: center; /* Centre le texte dans les cellules */
+        padding: 8px; /* Ajoute du padding dans les cellules */
+    }
+
+    /* Styles pour l'icône fixe */
+    .fixed-icon {
+        width: 12vw; /* Ajuste la largeur de l'icône fixe pour mobile */
+    }
+}
+
+/* Styles pour les très petits écrans */
+@media (max-width: 480px) {
+    .fixed-icon {
+        width: 15vw; /* Ajuste la largeur de l'icône fixe pour les très petits écrans */
+    }
+}
+
+/* Styles Responsifs pour le contenu */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em; /* Ajuste la taille du titre principal */
+    }
+    h2 {
+        font-size: 1.5em; /* Ajuste la taille du sous-titre */
+    }
+    .container {
+        padding: 40px 15px; /* Ajuste le padding pour le conteneur principal */
+    }
+    .service-bubble {
+        width: 120px; /* Ajuste la taille des bulles de service */
+        height: 120px;
+    }
+    #testimonials {
+        padding: 2em; /* Ajuste le padding pour la section des témoignages */
+    }
+    header.custom-header {
+        padding: 130px; /* Ajuste le padding de l'en-tête personnalisé */
+    }
+}

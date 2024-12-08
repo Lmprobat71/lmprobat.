@@ -1,0 +1,54 @@
+/* Styles pour tablette */
+@media (max-width :768px) {
+    .service {
+        flex-direction :column; /* Changer la direction du flex */
+        align-items:center; /* Centre les éléments */
+    }
+
+    .service img {
+        width :80 px; 
+        height:auto; /* Dimensionnement automatique de la hauteur */
+    }
+
+    .service-bubble {
+        width :150 px; 
+        height :150 px; 
+    }
+
+    .service-bubble h3 {
+        font-size :16 px; 
+    }
+
+    .service-bubble p {
+        font-size :12 px; 
+    }
+
+  #secphoto #gallery-content {
+      flex-direction: column;
+  }
+
+  #secphoto .project-image {
+      width: 100%;
+      height: auto;
+  }
+}
+/* Styles pour smartphone */
+
+@media (max-width :480px) {
+    
+/* Dimension marginale de la bulle de service */
+   .service-bubble {  
+      width :220 px;  
+      height :220 px ;   
+   } 
+
+/* Changer la taille des titres et des paragraphes*/   
+   .service-bubble h3 {    
+      font-size :14 px ;   
+   }    
+
+   .service-bubble p {      
+      font-size :10 px ;    
+   }  
+   
+}

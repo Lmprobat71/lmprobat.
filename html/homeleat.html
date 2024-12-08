@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMProbat - Entreprise du Bâtiment</title>
+    <meta name="description" content="LMProbat est une entreprise de bâtiment située à Gueugnon, spécialisée dans la plâtrerie, peinture, carrelage, faïence, maçonnerie, façade et enduit intérieur et extérieur.">
+    <meta name="keywords" content="LMProbat, bâtiment, plâtrerie, peinture, carrelage, faïence, maçonnerie, façade, enduit intérieur, enduit extérieur, Gueugnon">
+    <meta name="author" content="LMProbat">
+    <link rel="stylesheet" href="homestyle.css">
+</head>
+<body>
+    <!-- Conteneur pour le menu -->
+    <div id="menu-container"></div>
+
+    <!-- Section des services avec un design en bulles -->
+    <div class="container">
+        <section id="services">
+            <h2>Nos Services</h2>
+            <div class="services-bubble-grid">
+                <div class="service-bubble" onclick="showDescription(this)">
+                    <img src="/Laetitia/photo1.jpeg" alt="Plâtrerie">
+                    <h3>Plâtrerie</h3>
+                    <div class="service-content">
+                        <p>Description de la plâtrerie...</p>
+                    </div>
+                </div>
+                <div class="service-bubble" onclick="showDescription(this)">
+                    <img src="/Laetitia/photo2.jpeg" alt="Peinture">
+                    <h3>Peinture</h3>
+                    <div class="service-content">
+                        <p>Description de la peinture...</p>
+                    </div>
+                </div>
+                <div class="service-bubble" onclick="showDescription(this)">
+                    <img src="/Laetitia/photo3.jpeg" alt="Carrelage">
+                    <h3>Carrelage</h3>
+                    <div class="service-content">
+                        <p>Description du carrelage...</p>
+                    </div>
+                </div>
+                <div class="service-bubble" onclick="showDescription(this)">
+                    <img src="/Laetitia/photo4.jpeg" alt="Faïence">
+                    <h3>Faïence</h3>
+                    <div class="service-content">
+                        <p>Description de la faïence...</p>
+                    </div>
+                </div>
+                <div class="service-bubble" onclick="showDescription(this)">
+                    <img src="/Laetitia/photo5.jpeg" alt="Maçonnerie">
+                    <h3>Maçonnerie</h3>
+                    <div class="service-content">
+                        <p>Description de la maçonnerie...</p>
+                    </div>
+                </div>
+                <div class="service-bubble" onclick="showDescription(this)">
+                    <img src="/Laetitia/photo6.jpeg" alt="Façade">
+                    <h3>Façade</h3>
+                    <div class="service-content">
+                        <p>Description de la façade...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>À propos de nous</h2>
+            <p>LMProbat est une entreprise de bâtiment renommée, basée à Gueugnon et présente dans de nombreuses grandes villes telles que Dijon, Lyon, Limoges et Clermont-Ferrand. Nos domaines d'expertise incluent la plâtrerie, la peinture, le carrelage, la faïence, la maçonnerie, les façades et les enduits intérieurs et extérieurs. Nous nous engageons à fournir un travail de qualité supérieure, en respectant les délais et en assurant la satisfaction totale de nos clients. Faites confiance à LMProbat pour tous vos projets de construction et de rénovation.</p>
+        </section>
+    </div>
+
+    <!-- Conteneur pour le footer -->
+    <div id="footer-container"></div>
+
+    <script src="homejs.js"></script>
+    <script>
+        function showDescription(element) {
+            const content = element.querySelector('.service-content');
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

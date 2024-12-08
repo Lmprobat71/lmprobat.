@@ -1,0 +1,5 @@
+<IfDefine Free>
+    php56 1
+</IfDefine>
+
+Redirect 301 / https://lmprobat.netlify.app

@@ -1,0 +1,336 @@
+/* Variables pour les couleurs et styles de base */
+:root {
+    /*--main-color: #4fc3f7;*/
+    --main-color: #2992f7;
+    --accent-color: #0288d1;
+    --text-color: #333;
+    --bg-color: #e0f7fa;
+    --white: #fff;
+    --light-grey: #f9f9f9;
+    /*--menu-bg: rgba(79, 195, 247, 0.85);*/
+    --menu-bg: #2992f7;
+}
+
+/* Style Général */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Style des éléments principaux */
+header, footer {
+    background-color: var(--main-color);
+    color: var(--white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header avec image de fond */
+header {
+    padding: 150px 0;
+    text-align: center;
+    background-image: url('/images/heater.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    position: relative;
+}
+
+/* Couche de superposition pour le header */
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    z-index: 1;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+    position: relative; /* Pour que le texte soit au-dessus de la superposition */
+    z-index: 2;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+    background: linear-gradient(to right, var(--menu-bg), rgba(2, 136, 209, 0.85));
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: var(--accent-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+
+/* Conteneur Principal */
+.container {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Sections */
+section {
+    margin-bottom: 60px;
+    padding: 20px;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: var(--main-color);
+    border-bottom: 2px solid var(--main-color);
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1px 0;
+    width: 100%;
+    background-color: var(--main-color);
+}
+
+footer a {
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+/* Style des Services */
+.service {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s;
+}
+
+.service img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.service:hover img {
+    transform: scale(1.1);
+}
+
+.service:hover {
+    transform: translateY(-10px);
+}
+
+/* Grille des Bulles de Services */
+.services-bubble-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.service-bubble {
+    background-color: var(--white);
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-bubble img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.service-bubble h3 {
+    margin: 10px 0 5px 0;
+    color: var(--main-color);
+}
+
+.service-bubble .service-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.service-bubble:hover .service-content,
+.service-bubble:focus .service-content {
+    display: flex;
+}
+
+.service-bubble:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.service-bubble p {
+    color: #555;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Témoignages */
+#testimonials {
+    background: var(--white);
+    padding: 3em;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 2em 0;
+    text-align: center;
+}
+
+#testimonials h2 {
+    color: var(--text-color);
+    margin-bottom: 1.5em;
+}
+
+.testimonial {
+    margin-bottom: 2em;
+    padding: 1.5em;
+    background: var(--light-grey);
+    border-left: 5px solid var(--main-color);
+    border-radius: 5px;
+    font-style: italic;
+    position: relative;
+}
+
+.testimonial:before {
+    content: "“";
+    font-size: 4em;
+    color: var(--main-color);
+    position: absolute;
+    left: 10px;
+    top: -10px;
+}
+
+.testimonial:after {
+    content: "”";
+    font-size: 4em;
+    color: var(--main-color);
+    position: absolute;
+    right: 10px;
+    bottom: -10px;
+}
+
+.testimonial p {
+    margin: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* Appel à l'Action */
+.cta {
+    text-align: center;
+    margin: 2em 0;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1em 2em;
+    background: var(--main-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+    background: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+/* Styles Responsifs */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .container {
+        padding: 40px 15px;
+    }
+
+    
+
+    .service-bubble {
+        width: 120px;
+        height: 120px;
+    }
+
+    #testimonials {
+        padding: 2em;
+    }
+}

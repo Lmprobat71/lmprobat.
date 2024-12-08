@@ -1,0 +1,384 @@
+/* Variables pour les couleurs */
+:root {
+    --main-color: #2992f7; /* Couleur principale */
+    --accent-color: #0288d1; /* Couleur d'accentuation */
+    --text-color: #333; /* Couleur du texte */
+    --bg-color: #e0f7fa; /* Couleur de fond */
+    --white: #fff; /* Blanc */
+    --light-grey: #f9f9f9; /* Gris clair */
+    --menu-bg: #2992f7; /* Couleur de fond du menu */
+    
+    --header-bg-color: #2992f7; /* Couleur de fond du header */
+    --header-text-color: #fff; /* Couleur du texte du header */
+
+    --nav-container-bg-color: #333; /* Couleur de fond du conteneur de navigation */
+    --nav-color1: #2992f7; /* Couleur gauche du menu de navigation */
+    --nav-color2: #e53935; /* Couleur milieu du menu de navigation */
+    --nav-color3: #fdd835; /* Couleur droite du menu de navigation */
+    --nav-text-color: #fff; /* Couleur du texte des liens de navigation */
+    --nav-hover-color: #ffffff; /* Couleur de survol des liens de navigation */
+    --nav-active-color: #e53935; /* Couleur active des liens de navigation */
+
+    --footer-color1: #2992f7; /* Couleur gauche du footer */
+    --footer-color2: #e53935; /* Couleur milieu du footer */
+    --footer-color3: #fdd835; /* Couleur droite du footer */
+    --footer-text-color: #fff; /* Couleur du texte du footer */
+    --footer-link-color: #fff; /* Couleur des liens du footer */
+
+    --icon-bg-color: #fff; /* Couleur de fond de l'icône fixe */
+
+    --body-bg-color: #000000; /* Couleur de fond du corps de la page */
+    --body-text-color: #333; /* Couleur du texte du corps de la page */
+
+    --gallery-container-bg: #fff; /* Couleur de fond du conteneur de la galerie */
+    --gallery-container-border1: #2992f7; /* Couleur bordure 1 du conteneur de la galerie */
+    --gallery-container-border2: #e53935; /* Couleur bordure 2 du conteneur de la galerie */
+    --gallery-container-border3: #fdd835; /* Couleur bordure 3 du conteneur de la galerie */
+
+    --highlight-color: #fdd835; /* Jaune lumineux - Utilisé pour les éléments de mise en évidence */
+    --size: 100px; /* Taille des images dans la galerie */
+}
+
+/* Styles pour le corps de la page */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* Conteneur principal pour faire en sorte que le footer reste en bas */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Assure que la page prend toute la hauteur de la fenêtre */
+}
+
+header, main {
+    flex: 1; /* Prend tout l'espace disponible entre l'en-tête et le footer */
+}
+
+/* Contenu principal */
+main {
+    margin-bottom: 60px; /* Crée un espace entre le contenu principal et le footer */
+}
+/* Header */
+header.custom-header {
+    padding: 200px 0;
+    text-align: center;
+    background-image: url('/images/heater.jpg'); /* Chemin d'accès précédemment utilisé */
+    background-size: cover;
+    background-position: center;
+    color: var(--header-text-color); /* Texte en blanc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Navigation */
+/* Conteneur principal de la navigation */
+nav {
+    display: flex; /* Utilise Flexbox pour l'alignement horizontal des éléments */
+    justify-content: space-around; /* Répartit les éléments uniformément avec des espaces entre eux */
+    align-items: center; /* Centre les éléments verticalement */
+    width: 100%; /* Prend toute la largeur disponible de la page */
+    background: linear-gradient(to right, var(--nav-color1), var(--nav-color2), var(--nav-color3)); /* Dégradé de couleur de fond */
+    padding: 2px 0; /* Espacement interne en haut et en bas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajoute une ombre pour un effet de profondeur */
+    position: sticky; /* Rend le menu fixe en haut lors du défilement */
+    top: 0; /* Positionne le menu en haut de la page */
+    z-index: 1000; /* S'assure que le menu est au-dessus des autres éléments */
+}
+
+/* Liste des éléments de navigation */
+nav ul {
+    list-style: none; /* Supprime les puces ou numéros par défaut */
+    margin: 0; /* Supprime les marges externes */
+    padding: 0; /* Supprime les marges internes */
+    display: flex; /* Aligne les éléments horizontalement */
+    width: 100%; /* Prend toute la largeur disponible */
+    justify-content: space-around; /* Répartit les éléments uniformément */
+}
+
+/* Élément de liste individuel */
+nav ul li {
+    position: relative; /* Nécessaire pour les sous-menus ou effets futurs */
+}
+
+/* Liens dans les éléments de la liste */
+nav ul li a {
+    color: var(--nav-text-color); /* Couleur du texte des liens */
+    text-decoration: none; /* Supprime le soulignement */
+    font-weight: bold; /* Texte en gras */
+    font-size: 1.2em; /* Taille du texte */
+    padding: 10px 15px; /* Espacement interne des liens */
+    border-radius: 5px; /* Coins arrondis pour les liens */
+    transition: all 0.3s ease; /* Transition fluide pour les changements d'état */
+}
+
+/* État de survol et actif des liens */
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: var(--nav-hover-color); /* Couleur de fond au survol ou lorsque le lien est actif */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Ombre ajoutée pour l'effet de profondeur */
+    transform: scale(1.1); /* Agrandit légèrement l'élément au survol */
+}
+
+/* Media Queries pour les appareils mobiles */
+/* Styles spécifiques pour les écrans de largeur maximale de 768px */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Passe les éléments en colonne pour mobile */
+        align-items: center; /* Centre les éléments horizontalement */
+    }
+
+    nav ul li a {
+        font-size: 1em; /* Taille du texte légèrement réduite pour mobile */
+        padding: 10px 20px; /* Ajuste l'espacement interne pour mobile */
+        width: 90%; /* Les liens prennent presque toute la largeur */
+        text-align: center; /* Centre le texte */
+    }
+}
+
+/* Burger menu (mobile) */
+/* Bouton du menu burger pour les mobiles */
+nav .burger {
+    display: none; /* Masque le menu burger par défaut */
+    flex-direction: column; /* Aligne les lignes du burger verticalement */
+    cursor: pointer; /* Affiche un curseur de pointeur pour indiquer que c'est cliquable */
+    gap: 5px; /* Espacement entre les lignes du burger */
+    position: relative; /* Nécessaire pour la gestion de l'état actif */
+    z-index: 1001; /* S'assure que le bouton est au-dessus des autres éléments */
+}
+
+/* Style des lignes du burger */
+nav .burger div {
+    width: 30px; /* Largeur des lignes du burger */
+    height: 3px; /* Épaisseur des lignes du burger */
+    background-color: var(--nav-text-color); /* Couleur des lignes */
+    border-radius: 2px; /* Coins arrondis pour les lignes */
+    transition: all 0.3s ease; /* Transition fluide pour les transformations */
+}
+
+/* Animation pour le burger menu */
+/* Désactivation des lignes du burger lors de l'ouverture */
+nav .burger.active div {
+    opacity: 0; /* Rend toutes les lignes invisibles */
+}
+
+/* Popup radial */
+/* Styles spécifiques pour le menu radial sur mobile */
+@media (max-width: 768px) {
+    nav .burger {
+        display: flex; /* Affiche le menu burger uniquement sur mobile */
+    }
+
+    nav ul {
+        display: none; /* Masque les éléments de menu par défaut */
+        position: fixed; /* Positionne le menu de manière fixe */
+        top: 50%; /* Centre le menu verticalement */
+        left: 50%; /* Centre le menu horizontalement */
+        transform: translate(-50%, -50%); /* Permet de centrer le menu exactement au milieu */
+        background: linear-gradient(to right, var(--nav-color1), var(--nav-color2), var(--nav-color3)); /* Arrière-plan dégradé */
+        padding: 20px; /* Espacement interne */
+        border-radius: 50%; /* Forme de cercle */
+        width: 200px; /* Largeur du menu */
+        height: 200px; /* Hauteur du menu */
+        justify-content: center; /* Centre les éléments horizontalement */
+        align-items: center; /* Centre les éléments verticalement */
+        flex-direction: column; /* Aligne les éléments en colonne */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre ajoutée pour l'effet de profondeur */
+        z-index: 99999; /* Assure que le menu est au-dessus des autres éléments */
+        opacity: 0; /* Menu initialement invisible */
+        transition: opacity 0.3s ease; /* Transition fluide pour l'opacité */
+    }
+
+    nav ul.active {
+        display: flex; /* Affiche les éléments de menu lorsqu'ils sont actifs */
+        opacity: 1; /* Rend les éléments de menu visibles */
+        transition: opacity 0.3s ease; /* Transition fluide pour l'opacité */
+    }
+
+    nav ul li {
+        display: flex; /* Aligne les éléments de menu horizontalement */
+        justify-content: center; /* Centre les éléments de menu */
+        width: 100%; /* Prend toute la largeur */
+    }
+
+    nav ul li a {
+        padding: 10px 0; /* Espacement interne des liens */
+        width: 100%; /* Les liens prennent toute la largeur */
+        text-align: center; /* Centre le texte des liens */
+    }
+}
+
+/* Footer */
+footer {
+text-align: center;
+    background: linear-gradient(to right, var(--footer-color1), var(--footer-color2), var(--footer-color3)); /* Gradient de couleurs personnalisables */
+    color: var(--footer-text-color); /* Couleur du texte */
+    display: flex; /* Utilisation de Flexbox pour l'alignement */
+    align-items: center; /* Centre le texte verticalement */
+    justify-content: center; /* Centre le texte horizontalement */
+    padding: 10px; /* Ajoute du padding pour l'espace intérieur */
+    margin: 0; /* Supprime toute marge */
+    width: 100%; /* Prend toute la largeur disponible */
+    height: 20px; /* Fixe la hauteur à 50px */
+    position: fixed; /* Fixe le footer en bas de la page */
+    bottom: 0; /* Positionne le footer en bas */
+    left: 0; /* S'assure que le footer commence à gauche */
+    animation: fadeInUp 1s ease-out; /* Animation pour l'apparition du footer */
+}
+
+/* Responsiveness pour le footer */
+@media (max-width: 768px) {
+    footer {
+        padding: 15px 0; /* Augmente le padding pour les petits écrans */
+        text-align: center; /* Centre le texte sur petits écrans */
+        height: 5px; /* Ajuste la hauteur pour s'adapter au contenu */
+    }
+    
+    footer a {
+        display: block; /* Affiche les liens en bloc pour mobile */
+        margin: 5px 0; /* Marge autour des liens pour mobile */
+    }
+
+    footer img {
+        margin-left: 0; /* Supprime la marge à gauche pour les images sur mobile */
+    }
+}
+
+/* Icône fixe */
+.fixed-icon {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 8vw;
+    max-width: 100px;
+    height: auto;
+    z-index: 10000;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .fixed-icon {
+        width: 12vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .fixed-icon {
+        width: 15vw;
+    }
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Conteneur Principal */
+.container {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+/* Témoignages */
+#testimonials {
+    background: var(--white);
+    padding: 3em;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 2em 0;
+    text-align: center;
+}
+
+#testimonials h2 {
+    color: var(--text-color);
+    margin-bottom: 1.5em;
+}
+
+.testimonial {
+    margin-bottom: 2em;
+    padding: 1.5em;
+    background: var(--light-grey);
+    border-left: 5px solid var(--main-color);
+    border-radius: 5px;
+    font-style: italic;
+    position: relative;
+}
+
+.testimonial:before {
+    content: "“";
+    font-size: 4em;
+    color: var(--main-color);
+    position: absolute;
+    left: 10px;
+    top: -10px;
+}
+
+.testimonial:after {
+    content: "”";
+    font-size: 4em;
+    color: var(--main-color);
+    position: absolute;
+    right: 10px;
+    bottom: -10px;
+}
+
+.testimonial p {
+    margin: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* Styles Responsifs */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .container {
+        padding: 40px 15px;
+    }
+
+    .service-bubble {
+        width: 120px;
+        height: 120px;
+    }
+
+    #testimonials {
+        padding: 2em;
+    }
+    header.custom-header {
+    padding: 130px;
+    }
+}
