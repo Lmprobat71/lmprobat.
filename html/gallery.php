@@ -6,8 +6,6 @@ if (!isset($_GET['service'])) {
 }
 
 $service = $_GET['service'];
-
-// Utilisation du chemin d'accès que vous avez fourni
 $directory = $_SERVER['DOCUMENT_ROOT'] . '/images/Galery/' . $service . '/';
 
 // Vérifiez si le répertoire existe
@@ -22,6 +20,11 @@ $images = glob($directory . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
 if (!$images) {
     echo json_encode(['error' => 'Aucune image trouvée pour ce service.']);
     exit;
+}
+
+// Debugging: Afficher les chemins trouvés
+foreach ($images as $image) {
+    error_log("Image trouvée : " . $image);
 }
 
 // Convertir le chemin absolu en chemin relatif pour le client

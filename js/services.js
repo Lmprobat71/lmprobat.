@@ -1,18 +1,4 @@
 $(document).ready(function () {
-    // Définir la fonction showDescription
-    function showDescription() {
-        // Logique pour afficher la description
-        alert("Description affichée !");
-    }
-
-    // Assurez-vous que l'élément existe avant d'ajouter l'événement
-    const elements = document.querySelectorAll('.your-element-class');
-    elements.forEach(element => {
-        if (element) {
-            element.onclick = showDescription;
-        }
-    });
-
     // Afficher l'overlay
     $(".btn-box").click(function () {
         const overlay = $(this).parent().children(".overlay");
@@ -55,7 +41,7 @@ $(document).ready(function () {
             galleryContent.empty(); // Effacer les images précédentes
             galleryTitle.text(service); // Mettre à jour le titre de la galerie
 
-            fetch(`/html/gallery.php?service=${service}`)
+            fetch(`/.netlify/functions/gallery?service=${service}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("Network response was not ok");
