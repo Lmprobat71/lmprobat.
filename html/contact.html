@@ -11,6 +11,7 @@
         content="LMProbat, bâtiment, plâtrerie, peinture, carrelage, faïence, maçonnerie, façade, enduit intérieur, enduit extérieur, Gueugnon">
     <meta name="author" content="LM Probat">
     <link rel="stylesheet" href="/css/basecss.css">
+    <link rel="stylesheet" href="/css/indexcss.css">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <style>
         #contact {
@@ -158,7 +159,8 @@
                     </p>
                     <p>
                         <label>
-                            <input type="checkbox" name="consent" required />*J'accepte que les données saisies dans ce
+                            <input type="checkbox" name="consent" required />*J'accepte que les données saisies dans
+                            ce
                             formulaire soient utilisées pour me contacter dans le cadre de ma demande.
                         </label>
                     </p>
@@ -168,12 +170,54 @@
                 </form>
                 <br>
                 <p id="validation-message" style="color: green; display: none;"></p> <!-- Message de validation -->
-                <p>Informations sur le traitement de vos données personnelles : Pour connaître et exercer vos droits,
-                    notamment de retrait de votre consentement à l'utilisation de données collectées par ce formulaire,
+                <p>Informations sur le traitement de vos données personnelles : Pour connaître et exercer vos
+                    droits,
+                    notamment de retrait de votre consentement à l'utilisation de données collectées par ce
+                    formulaire,
                     veuillez consulter notre politique de confidentialité.</p>
             </div>
-        </section>
 
+            <section id="maps">
+                <div class="info-contact">
+                    <div class="details">
+                        <p><strong>LM PROBAT</strong></p>
+                        <p><a href="https://www.google.com/maps/dir//1+Rue+Waldeck+Rochet,+71130+Gueugnon"
+                                target="_blank">1
+                                Rue Waldeck Rochet<br>71130 Gueugnon</a></p>
+                        <p><a href="tel:+33638776746">Téléphone: 06.38.77.67.46</a></p>
+                        <p><a href="mailto:lmprobat71@gmail.com">Envoyer un email à :<br> lmprobat71@gmail.com</a>
+                        </p>
+                        <p><strong>Nos horaires d'ouverture :</strong></p>
+                        <table class="horaires-table">
+                            <tr>
+                                <th>Jour</th>
+                                <th>Horaires</th>
+                            </tr>
+                            <tr>
+                                <td>Lundi</td>
+                                <td>9H à 12H, 14H à 17H</td>
+                            </tr>
+                            <tr>
+                                <td>Mardi</td>
+                                <td>9H à 12H, 14H à 17H</td>
+                            </tr>
+                            <tr>
+                                <td>Mercredi</td>
+                                <td>9H à 12H, 14H à 17H</td>
+                            </tr>
+                            <tr>
+                                <td>Jeudi</td>
+                                <td>9H à 12H, 14H à 17H</td>
+                            </tr>
+                            <tr>
+                                <td>Vendredi</td>
+                                <td>9H à 12H, 14H à 17H</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </section>
         <!-- Icône fixe en bas à droite -->
         <a href="/html/contact.html">
             <img src="/images/contactnous.png" alt="Icône contactez-nous" class="fixed-icon">
@@ -182,14 +226,14 @@
     <script src="/js/homejs.js"></script>
     <script>
         function validateForm() {
-    // Vous pouvez ajouter des validations supplémentaires ici si nécessaire
-    // Si tout est valide, montrez le message de validation
-    document.getElementById('validation-message').innerText = "Votre message a été envoyé avec succès !";
-    document.getElementById('validation-message').style.display = "block";
-    
-    // Empêche l'envoi réel du formulaire pour cet exemple
-    return true; // Changez ceci en `true` si vous souhaitez envoyer le formulaire
-}
+            // Vous pouvez ajouter des validations supplémentaires ici si nécessaire
+            // Si tout est valide, montrez le message de validation
+            document.getElementById('validation-message').innerText = "Votre message a été envoyé avec succès !";
+            document.getElementById('validation-message').style.display = "block";
+
+            // Empêche l'envoi réel du formulaire pour cet exemple
+            return true; // Changez ceci en `true` si vous souhaitez envoyer le formulaire
+        }
     </script>
     <footer id="footer-container">
     </footer>
