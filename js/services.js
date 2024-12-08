@@ -34,7 +34,7 @@ $(document).ready(function () {
         galleryContent.empty(); // Effacer les images précédentes
         galleryTitle.text(`${service}`); // Mettre à jour le titre de la galerie
 
-        fetch(`http://lmprobat.free.fr/html/gallery.php?service=${service}`)
+        fetch(`/html/gallery.php?service=${service}`)
             .then(response => response.json())
             .then(images => {
                 if (images.error) {
