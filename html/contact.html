@@ -10,10 +10,124 @@
     <meta name="keywords"
         content="LMProbat, bâtiment, plâtrerie, peinture, carrelage, faïence, maçonnerie, façade, enduit intérieur, enduit extérieur, Gueugnon">
     <meta name="author" content="LM Probat">
-    <link rel="stylesheet" href="/css/homestyle3.css">
-    <link rel="icon" href="/path/to/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/basecss.css">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <style>
+        #contact {
+            background-color: #f9f9f9;
+            /* Couleur de fond */
+            padding: 40px;
+            /* Espacement interne */
+            border-radius: 12px;
+            /* Coins arrondis */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            /* Ombre */
+            max-width: 600px;
+            /* Largeur maximale */
+            margin: 20px auto;
+            /* Centrer la section */
+            transition: transform 0.3s;
+            /* Transition pour l'effet 3D */
+        }
 
+        #contact:hover {
+            transform: translateY(-5px);
+            /* Effet de levée au survol */
+        }
+
+        .content-container {
+            font-family: Arial, sans-serif;
+            /* Police de caractères */
+            color: #333;
+            /* Couleur du texte */
+        }
+
+        h2 {
+            font-size: 26px;
+            /* Taille de la police du titre */
+            margin-bottom: 20px;
+            /* Espacement en dessous du titre */
+            text-align: center;
+            /* Centrer le titre */
+            color: #007BFF;
+            /* Couleur du titre */
+        }
+
+        p {
+            margin-bottom: 15px;
+            /* Espacement entre les paragraphes */
+        }
+
+        form {
+            display: flex;
+            /* Flexbox pour le formulaire */
+            flex-direction: column;
+            /* Alignement vertical */
+        }
+
+        label {
+            margin-bottom: 5px;
+            /* Espacement en dessous des labels */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            padding: 12px;
+            /* Espacement interne des champs */
+            border: 1px solid #ccc;
+            /* Bordure */
+            border-radius: 6px;
+            /* Coins arrondis */
+            font-size: 16px;
+            /* Taille de la police */
+            transition: border-color 0.3s;
+            /* Transition pour la bordure */
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: #007BFF;
+            /* Bordure bleue au focus */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            /* Ombre au focus */
+        }
+
+        button {
+            padding: 12px 20px;
+            /* Espacement interne du bouton */
+            background-color: #007BFF;
+            /* Couleur de fond du bouton */
+            color: white;
+            /* Couleur du texte du bouton */
+            border: none;
+            /* Pas de bordure */
+            border-radius: 6px;
+            /* Coins arrondis */
+            cursor: pointer;
+            /* Curseur en main */
+            font-size: 16px;
+            /* Taille de la police */
+            transition: background-color 0.3s, transform 0.3s;
+            /* Transition pour le bouton */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            /* Couleur au survol */
+            transform: translateY(-2px);
+            /* Effet de levée au survol */
+        }
+
+        footer {
+            margin-top: 20px;
+            /* Espacement au-dessus du footer */
+            font-size: 12px;
+            /* Taille de la police pour le footer */
+            color: #666;
+            /* Couleur du texte du footer */
+        }
     </style>
 </head>
 
@@ -22,102 +136,63 @@
         <!-- Contenu du header -->
     </header>
     <main>
-        <!-- Conteneur pour le menu -->
         <nav id="menu-container"></nav> <!-- Utiliser <nav> pour le menu -->
 
         <!-- Section de contact -->
         <section id="contact">
             <div class="content-container">
-
                 <h2>Contactez-nous :</h2>
                 <p>Vous pouvez nous contacter en utilisant le formulaire ci-dessous :</p>
                 <br>
-                <form name="contact" netlify>
+                <form name="contact" netlify onsubmit="return validateForm()">
                     <p>
-                        <label>Name <input type="text" name="name" /></label>
+                        <label>Votre Nom : <br>
+                            <input type="text" name="name" required style="width: 200px;"></label>
                     </p>
                     <p>
-                        <label>Email <input type="email" name="email" /></label>
+                        <label>Votre Email :<br>
+                            <input type="email" name="email" required style="width: 200px;"></label>
+                    </p>
+                    <p>Votre Message :<br>
+                        <textarea name="message" rows="5" required="" style="width: 496px; height: 66px;"></textarea>
                     </p>
                     <p>
-                        <button type="submit">Send</button>
+                        <label>
+                            <input type="checkbox" name="consent" required /> J'accepte que les données saisies dans ce
+                            formulaire soient utilisées pour me contacter dans le cadre de ma demande.
+                        </label>
                     </p>
-                </form> <br>
-
-                J'accepte que les données saisies dans ce formulaire soient utilisées pour me contacter dans le cadre de
-                ma demande.
+                    <p>
+                        <button type="submit">Envoyer</button>
+                    </p>
+                </form>
                 <br>
-                <br>
-                Informations sur le traitement de vos données personnelles : Pour connaître et exercer vos droits,
-                notamment de retrait de votre consentement à l'utilisation de données collectées par ce formulaire,
-                veuillez consulter notre politique de confidentialité.
-
-
-        </section>
-        <br>
-        <section>
-            <div class="info_contact">
-                <p>Nos horaires d'ouverture</p>
-                <p>Nous sommes ouvert de :</p>
-                <table>
-                    <tr>
-                        <td>Lundi</td>
-                        <td>9H à 12H</td>
-                        <td>14H à 17H</td>
-                    </tr>
-                    <tr>
-                        <td>Mardi</td>
-                        <td>9H à 12H</td>
-                        <td>14H à 17H</td>
-                    </tr>
-                    <tr>
-                        <td>Mercredi</td>
-                        <td>9H à 12H</td>
-                        <td>14H à 17H</td>
-                    </tr>
-                    <tr>
-                        <td>Jeudi</td>
-                        <td>9H à 12H</td>
-                        <td>14H à 17H</td>
-                    </tr>
-                    <tr>
-                        <td>Vendredi</td>
-                        <td>9H à 12H</td>
-                        <td>14H à 17H</td>
-                    </tr>
-                </table>
+                <p id="validation-message" style="color: green; display: none;"></p> <!-- Message de validation -->
+                <p>Informations sur le traitement de vos données personnelles : Pour connaître et exercer vos droits,
+                    notamment de retrait de votre consentement à l'utilisation de données collectées par ce formulaire,
+                    veuillez consulter notre politique de confidentialité.</p>
             </div>
         </section>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
 
         <!-- Icône fixe en bas à droite -->
         <a href="/html/contact.html">
-            <img src="/images/icontel.png" alt="Icône téléphone" class="fixed-icon">
+            <img src="/images/contactnous.png" alt="Icône contactez-nous" class="fixed-icon">
         </a>
-
-        <!-- Conteneur pour le footer -->
-        <footer id="footer-container"></footer> <!-- Utiliser <footer> pour le footer -->
-
-        <script src="/js/homejs.js"></script>
-        <script>
-            document.querySelector("#contactForm").addEventListener("submit", function (e) {
-                e.preventDefault(); // Empêche l'envoi par défaut du formulaire
-                var subject = document.getElementById("subject").value;
-                var email = document.getElementById("email").value;
-                var message = "\n\n" + document.getElementById("message").value; // Ajoute "Bonjour," au message
-
-                var mailtoLink = "mailto:lmprobat71@gmail.com" +
-                    "?subject=" + encodeURIComponent(subject) +
-                    "&body=" + encodeURIComponent("E-mail : " + email + "\n\n" + "Bonjour, " + message);
-
-                window.location.href = mailtoLink;
-            });
-        </script>
+    </main>
+    <script src="/js/homejs.js"></script>
+    <script>
+        function validateForm() {
+    // Vous pouvez ajouter des validations supplémentaires ici si nécessaire
+    // Si tout est valide, montrez le message de validation
+    document.getElementById('validation-message').innerText = "Votre message a été envoyé avec succès !";
+    document.getElementById('validation-message').style.display = "block";
+    
+    // Empêche l'envoi réel du formulaire pour cet exemple
+    return true; // Changez ceci en `true` si vous souhaitez envoyer le formulaire
+}
+    </script>
+    <footer id="footer-container">
+    </footer>
 </body>
 
 </html>
