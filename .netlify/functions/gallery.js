@@ -16,8 +16,8 @@ async function scanPaths(basePath, service) {
     const directoriesToCheck = [
         path.join(basePath),
         path.join(basePath, 'images'),
-        path.join(basePath, 'images', 'Galery'),
-        path.join(basePath, 'images', 'Galery', service)
+        path.join(basePath, 'images', 'galery'),
+        path.join(basePath, 'images', 'galery', service)
     ];
 
     const results = [];
@@ -39,7 +39,7 @@ exports.handler = async function(event, context) {
     const basePath = path.join(__dirname, '..', '..');
     const scanResults = await scanPaths(basePath, service);
 
-    const directory = path.join(basePath, 'images', 'Galery', service);
+    const directory = path.join(basePath, 'images', 'galery', service);
     let files = [];
     try {
         await fs.access(directory);
@@ -57,7 +57,7 @@ exports.handler = async function(event, context) {
             statusCode: 200,
             body: JSON.stringify({
                 scanResults,
-                images: images.map(image => `/images/Galery/${service}/${image}`)
+                images: images.map(image => `/images/galery/${service}/${image}`)
             })
         };
     } catch (error) {
