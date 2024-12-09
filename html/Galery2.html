@@ -386,6 +386,28 @@ function hideGallery() {
     document.getElementById('gallery-section').style.display = 'none'; // Cache la galerie
 }
 </script>
+<script>
+async function listRootDirectories() {
+    try {
+        const response = await fetch(`/.netlify/functions/listDirectories`);
+        const text = await response.text();
+        
+        console.log('Réponse brute:', text);
+
+        try {
+            const data = JSON.parse(text);
+            console.log('Liste des répertoires à la racine:', data.directories);
+        } catch (jsonError) {
+            console.error('Erreur de parsing JSON:', jsonError);
+        }
+    } catch (error) {
+        console.error('Erreur de réseau:', error);
+    }
+}
+
+// Appeler la fonction pour lister les répertoires à la racine
+listRootDirectories();
+</script>
     
     <footer id="footer-container"></footer>
 </body>
