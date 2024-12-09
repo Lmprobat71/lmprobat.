@@ -347,39 +347,44 @@
     </a>
     <script src="/js/homejs.js"></script>
     <script>
-    async function loadDirectoryContents(serviceName) {
+async function loadDirectoryContents(serviceName) {
+    try {
+        const response = await fetch(`/.netlify/functions/gallery?serviceName=${serviceName}`);
+        const text = await response.text();
+
+        console.log('Réponse brute:', text);
+
         try {
-            const response = await fetch(`/.netlify/functions/gallery?serviceName=${serviceName}`);
-            const text = await response.text();
+            const data = JSON.parse(text);
+            console.log('Directory Contents:', data.directoryContents);
 
-            console.log('Réponse brute:', text);
-
-            try {
-                const data = JSON.parse(text);
-                console.log('Directory Contents:', data.directoryContents);
-
-                // Affichez les images dans votre page
-                const imageContainer = document.getElementById('image-container');
-                imageContainer.innerHTML = ''; // Réinitialise le conteneur
-                data.directoryContents.forEach(item => {
-                    if (!item.isDirectory && item.name.endsWith('.jpg')) {
-                        const img = document.createElement('img');
-                        img.src = item.path;
-                        img.alt = item.name;
-                        imageContainer.appendChild(img);
-                    }
-                });
-
-            } catch (jsonError) {
-                console.error('Erreur de parsing JSON:', jsonError);
-            }
-        } catch (error) {
-            console.error('Erreur de réseau:', error);
+            // Affichez les images dans votre page
+            const galleryContent = document.getElementById('gallery-content');
+            galleryContent.innerHTML = ''; // Réinitialise le conteneur
+            data.directoryContents.forEach(item => {
+                if (!item.isDirectory && item.name.endsWith('.jpg')) {
+                    const img = document.createElement('img');
+                    img.src = `/images/Galery/${serviceName}/${item.name}`; // Assurez-vous que le chemin est correct
+                    img.alt = item.name;
+                    galleryContent.appendChild(img);
+                }
+            });
+            document.getElementById('gallery-section').style.display = 'block'; // Affiche la galerie
+        } catch (jsonError) {
+            console.error('Erreur de parsing JSON:', jsonError);
         }
+    } catch (error) {
+        console.error('Erreur de réseau:', error);
     }
+}
 
-    // Remplacez 'service1' par la méthode pour obtenir le service sélectionné
-    loadDirectoryContents('service1');
+function loadGallery(serviceName) {
+    loadDirectoryContents(serviceName);
+}
+
+function hideGallery() {
+    document.getElementById('gallery-section').style.display = 'none'; // Cache la galerie
+}
 </script>
     
     <footer id="footer-container"></footer>
